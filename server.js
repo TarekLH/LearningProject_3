@@ -4,6 +4,13 @@ require('dotenv').config({path: './config/.env'});
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
 
+// databse connection
+const connectDB = require('./config/db');
+connectDB();
+
+// routes
+const mainRoutes =  require('./server/routes/mainRoutes');
+
 // init app
 const app = express();
 
@@ -15,8 +22,15 @@ app.set('view engine', 'ejs');
 // files serving
 app.use(express.static('public'));
 
+// middlewares
+// logger
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+})
+
 // routes
-app.use('/', require('./server/routes/main'));
+app.use('/api/main', mainRoutes);
 
 
 // listen for requests
