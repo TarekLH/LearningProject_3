@@ -1,7 +1,7 @@
 <div class="author">
   <h1 class="author-heading">Hi, I am Tarek.</h1>
   <p class="author-body">Full stack web developer and memes addict.</p>
-<div/>
+</div>
 
 <img src="/assets/hero-image.webp" alt="person looking out through window" class="hero-img" width="981" height="528">
 
@@ -19,5 +19,7 @@
     <% }) %>
   </ul>
 
-  <a href="#" class="pagination">&lt; View Older Posts</a>
+  <% if (nextPage !== null) { %>
+    <a href="/api/main/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+  <% } %>
 </section>
