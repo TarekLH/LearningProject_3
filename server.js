@@ -14,6 +14,10 @@ const mainRoutes =  require('./server/routes/mainRoutes');
 // init app
 const app = express();
 
+//middlewares
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 // template engine
 app.use(expressLayout);
 app.set('layout', './layouts/main');
@@ -25,7 +29,7 @@ app.use(express.static('public'));
 // middlewares
 // logger
 app.use((req, res, next) => {
-  console.log(req.path, req.method);
+  console.log(req.method, req.path);
   next();
 })
 

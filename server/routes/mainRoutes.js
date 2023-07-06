@@ -1,14 +1,16 @@
 // requirements
 const router = require('express').Router();
 // controllers
-const { getPosts } = require('../controllers/postsController');
+const { getPosts, getPost, searchPost } = require('../controllers/postsController');
 
-
+// GET all posts
 router.get('/', getPosts);
 
-router.get('/about', (req, res) => {
-  res.render('about')
-});
+// GET a single post
+router.get('/post/:id', getPost);
+
+// POST search term
+router.post('/search', searchPost)
 
 
 module.exports = router;
